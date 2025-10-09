@@ -1,6 +1,6 @@
 const  AboutSec=()=> {
   return (
-    <section className="w-full bg-gray-50 py-20">
+    <section className="w-full bg-gray-50 py-25">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         
         {/* Left Side - Image */}

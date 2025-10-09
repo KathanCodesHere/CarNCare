@@ -2,12 +2,16 @@ import React from "react";
 
 const CarCard = ({ car }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition p-4 flex flex-col">
-      <img
-        src={car.image}
-        alt={car.name}
-        className="w-full h-48 object-cover rounded-xl mb-4"
-      />
+    <div
+  className="bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-700 p-4 flex flex-col
+    hover:shadow-2xl border-blue-600 hover:scale-105 hover:-rotate-2 hover:border-blue-600 hover:border-2 hover:bg-blue-50"
+>
+       <img
+    src={car.image}
+    alt={car.name}
+    className="w-full h-48 object-cover rounded-xl mb-4 transition-all duration-700
+      group-hover:scale-110 group-hover:opacity-90"
+  />
       <h3 className="text-xl font-semibold text-gray-800">{car.name}</h3>
       <p className="text-gray-600 text-sm">{car.type}</p>
       <p className="mt-2 font-medium text-blue-600">₹{car.rentPerDay} / day</p>
