@@ -1,17 +1,8 @@
 import React from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
-  // Palasia Square, Indore coordinates
-  const location = { lat: 22.7170, lng: 75.8800 };
-
-  // Google Maps container style
-  const mapContainerStyle = {
-    height: "400px",
-    width: "100%",
-    borderRadius: "1rem",
-  };
+  
 
   return (
     <section className="bg-gray-50 py-22 px-6 sm:px-10">
@@ -56,16 +47,16 @@ const Contact = () => {
           {/* Right: Showroom Images */}
           <div className="flex-1 grid grid-cols-2 gap-4 w-full">
             <img
-              src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=600&q=80"
+              src="https://images.unsplash.com/photo-1683290579928-b0cd40aa9050?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&w=600&q=80"
               alt="Showroom 1"
               className="rounded-xl object-cover h-52 w-full shadow-md hover:scale-105 transition"
             />
             <img
-              src="https://images.unsplash.com/photo-1511910849309-0dffb8785142?auto=format&fit=crop&w=600&q=80"
+              src="https://images.unsplash.com/photo-1548618607-fe992dd33eff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&w=600&q=80"
               alt="Showroom 2"
               className="rounded-xl object-cover h-52 w-full shadow-md hover:scale-105 transition"
             />
-            <img
+            {/* <img
               src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80"
               alt="Showroom 3"
               className="rounded-xl object-cover h-52 w-full shadow-md hover:scale-105 transition"
@@ -74,22 +65,17 @@ const Contact = () => {
               src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80"
               alt="Showroom 4"
               className="rounded-xl object-cover h-52 w-full shadow-md hover:scale-105 transition"
-            />
+            /> */}
           </div>
         </div>
 
-        {/* Map Section */}
-        <div className="rounded-2xl overflow-hidden shadow-lg mt-10">
-          <LoadScript googleMapsApiKey="AIzaSyCXBcQMPLMEFm9tLw4CWUOXb9NiSjdFU0A">
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={location}
-              zoom={15}
-            >
-              <Marker position={location} />
-            </GoogleMap>
-          </LoadScript>
-        </div>
+        <div className="w-full mt-10">
+        <img
+          src="https://images.unsplash.com/photo-1692406069831-0bb7ea297645?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Showroom Banner"
+          className="w-full h-74 object-cover shadow-lg"
+        />
+      </div>
       </div>
     </section>
   );

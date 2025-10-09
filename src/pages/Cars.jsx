@@ -4,10 +4,10 @@ import CarCard from "../components/CarCard";
 
 const Cars = () => {
   return (
-    <section className="bg-gray-50 py-16 px-6 sm:px-10">
+    <section className="bg-gray-50 py-18 px-6 sm:px-10">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-blue-600">Our Cars</h2>
+          <h2 className="text-4xl pt-2 font-bold text-blue-600">Our Cars</h2>
           <p className="text-gray-600 mt-3 text-lg">
             Explore our collection of luxury, SUV, and commuter cars available
             for rent.

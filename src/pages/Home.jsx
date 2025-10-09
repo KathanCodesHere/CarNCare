@@ -1,9 +1,9 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
 import Hero from '../Components/Hero'
 import SliderSection from '../Components/SliderSection'
 import AboutSec from '../Components/AboutSec'
-import Footer from '../Components/Footer'
+import FeaturedCars from '../Components/FeaturedCars'
+import BrandsGrid from '../Components/BrandsGrid'
 
 const Home = () => {
   return (
@@ -11,8 +11,9 @@ const Home = () => {
       
       <Hero/>
       <SliderSection/>
+      <FeaturedCars/>
       <AboutSec/>
-      
+      <BrandsGrid/>
     </div>
   )
 }
