@@ -1,9 +1,18 @@
 import React from 'react'
+import Navbar from '../Components/Navbar'
+import Hero from '../Components/Hero'
+import SliderSection from '../Components/SliderSection'
+import AboutSec from '../Components/AboutSec'
+import Footer from '../Components/Footer'
 
 const Home = () => {
   return (
-    <div className='flex justify-center items-center h-screen'>
-      <h2 className='font-bold  text-4xl'>Welcome to the Car Rental home</h2>
+    <div>
+      
+      <Hero/>
+      <SliderSection/>
+      <AboutSec/>
+      
     </div>
   )
 }
