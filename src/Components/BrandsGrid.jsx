@@ -64,7 +64,7 @@ const BrandsGrid = () => {
         {brands.map((brand) => (
           <div
             key={brand.id}
-            className="flex flex-col items-center justify-center bg-blue-100 border-1 rounded-xl p-6 shadow-sm hover:shadow-lg hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1"
+            className="flex flex-col items-center justify-center bg-blue-50 rounded-xl p-6 shadow-sm hover:shadow-lg hover:bg-blue-100 transition-all duration-300 transform hover:-translate-y-1"
           >
             <div className="w-20 h-20 flex items-center justify-center">
               <img
