@@ -8,7 +8,6 @@ import BrandsGrid from '../Components/BrandsGrid'
 const Home = () => {
   return (
     <div>
-      
       <Hero/>
       <SliderSection/>
       <FeaturedCars/>
