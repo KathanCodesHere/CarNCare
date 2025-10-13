@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import ForgotPasswordModal from "../Components/ForgotPasswordModal";
 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const { login, loading, error } = useAuth();
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", formData.email);
-    console.log("Password:", formData.password);
-    // TODO: You can connect this to your Node.js /login endpoint
-  };
-
-  // Redirect user to backend for Google OAuth
-  const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
+    const credentials = { email: formData.email, password: formData.password };
+    try {
+      const response = await login(credentials);
+      console.log(response);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -29,7 +33,7 @@ const Login = () => {
           Login to Your Account
         </h2>
 
-        {/* Form */}
+        {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-gray-700 mb-1">Email</label>
@@ -55,13 +59,20 @@ const Login = () => {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your password"
             />
+            <p
+              className="text-right text-blue-600 text-sm mt-2 cursor-pointer hover:underline"
+              onClick={() => setIsForgotModalOpen(true)}
+            >
+              Forgot Password?
+            </p>
           </div>
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
@@ -72,15 +83,31 @@ const Login = () => {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        {/* Google Login Button */}
-        <button
+        {/* Google Login Button (optional) */}
+        {/* <button
           onClick={handleGoogleLogin}
           className="w-full flex items-center justify-center gap-3 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition"
         >
           <FcGoogle className="text-2xl" />
           <span className="font-medium text-gray-700">Sign in with Google</span>
-        </button>
+        </button> */}
+
+        <p className="text-center text-gray-600 mt-6">
+          Create a new account?{" "}
+          <Link
+            to="/signup"
+            className="text-blue-600 font-semibold hover:underline"
+          >
+            Register
+          </Link>
+        </p>
       </div>
+
+      {/* Forgot Password Modal */}
+      <ForgotPasswordModal
+        isOpen={isForgotModalOpen}
+        onClose={() => setIsForgotModalOpen(false)}
+      />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import VerifyOtpModal from "../Components/VerifyOtpModal";
+import { FcGoogle } from "react-icons/fc";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -8,8 +9,9 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    role: "customer", // default
+    role: "customer",
   });
+  const [isOtpOpen, setIsOtpOpen] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,52 +19,50 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("User Signup Details:", formData);
-    alert("Signup successful! 🎉");
+    console.log("Signup Data:", formData);
+    // simulate sending otp
+    // alert(`OTP sent to ${formData.email}`);
+    setIsOtpOpen(true);
+  };
+
+  const handleOtpVerify = (otp) => {
+    console.log("Verified OTP:", otp);
+    alert("OTP verified successfully 🎉");
     navigate("/login");
   };
 
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-white/90 backdrop-blur-lg p-8 rounded-2xl shadow-xl w-full max-w-md"
-      >
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-bold text-center text-blue-600 mb-6"
-        >
-          Create Your Account 🚗
-        </motion.h2>
+  const handleResend = () => {
+    console.log("Resending OTP...");
+    // call resend API
+  };
 
-        {/* Signup Form */}
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:5000/api/auth/google";
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4 mt-4">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
+          Create Your Account
+        </h2>
+
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Name */}
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Full Name
-            </label>
+            <label className="block text-gray-700 mb-1">Full Name</label>
             <input
               type="text"
               name="name"
               onChange={handleChange}
               value={formData.name}
               required
-              placeholder="Enter your full name"
-              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              placeholder="Enter your name"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Email */}
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Email
-            </label>
+            <label className="block text-gray-700 mb-1">Email</label>
             <input
               type="email"
               name="email"
@@ -70,15 +70,12 @@ const Signup = () => {
               value={formData.email}
               required
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Password */}
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Password
-            </label>
+            <label className="block text-gray-700 mb-1">Password</label>
             <input
               type="password"
               name="password"
@@ -86,44 +83,33 @@ const Signup = () => {
               value={formData.password}
               required
               placeholder="Create a password"
-              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Role Dropdown */}
+          {/* Role Selection */}
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Select Role
-            </label>
+            <label className="block text-gray-700 mb-1">Role</label>
             <select
               name="role"
               onChange={handleChange}
               value={formData.role}
-              className="w-full px-4 py-2 border rounded-lg shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="customer">Customer</option>
               <option value="admin">Admin</option>
             </select>
           </div>
 
-          {/* Submit Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
+          <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold shadow-md hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
           >
             Sign Up
-          </motion.button>
+          </button>
         </form>
 
-        {/* Already have an account */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-center text-gray-600 mt-6"
-        >
+        <p className="text-center text-gray-600 mt-6">
           Already have an account?{" "}
           <Link
             to="/login"
@@ -131,8 +117,25 @@ const Signup = () => {
           >
             Login
           </Link>
-        </motion.p>
-      </motion.div>
+        </p>
+        {/* Google Login Button */}
+                <button
+                  onClick={handleGoogleLogin}
+                  className="w-full flex items-center justify-center gap-3 mt-3 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition"
+                >
+                  <FcGoogle className="text-2xl" />
+                  <span className="font-medium text-gray-700">Sign in with Google</span>
+                </button>
+      </div>
+
+      {/* OTP Modal */}
+      <VerifyOtpModal
+        isOpen={isOtpOpen}
+        onClose={() => setIsOtpOpen(false)}
+        onVerify={handleOtpVerify}
+         onResend={handleResend}
+      />
+      
     </div>
   );
 };
