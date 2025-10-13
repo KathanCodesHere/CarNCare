@@ -12,9 +12,11 @@ export const useAuth = () => {
     try {
       setLoading(true);
       const data = await authService.login(credentials);
-
-      localStorage.setItem("accessToken", data.token);
-      navigate("/dashboard");
+      // console.log("login api:",data);
+      // localStorage.setItem("accessToken", data.token);
+      // localStorage.setItem("accessToken", data.token);
+      navigate("/profile");
+      return data;
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     } finally {
