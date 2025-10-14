@@ -9,6 +9,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { login, loading, error } = useAuth();
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
+  const [loginMsg, setLoginMsg]=useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,8 +20,14 @@ const Login = () => {
     const credentials = { email: formData.email, password: formData.password };
     try {
       const response = await login(credentials);
-      console.log(response);
-      navigate("/dashboard");
+      console.log("login api response:",response);
+      setLoginMsg(response.message);
+      if(response.message === 'Login successful')
+      {
+        navigate("/dashboard");
+        localStorage.setItem("accessToken", response.data.accessToken);
+      }
+      
     } catch (err) {
       console.log(err);
     }
@@ -66,7 +73,7 @@ const Login = () => {
               Forgot Password?
             </p>
           </div>
-
+          {loginMsg &&  <p className="text-xl font-bold text-red-600">{loginMsg}</p>}
           <button
             type="submit"
             disabled={loading}

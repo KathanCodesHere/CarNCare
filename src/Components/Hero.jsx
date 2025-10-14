@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom"
 const Hero=()=> {
   return (
-    <section className="w-full bg-gray-50 pt-32 pb-16 overflow-hidden"> 
-      {/* ↑ Increased top padding from pt-24 → pt-32 to move content below fixed navbar */}
+    <section className="w-full bg-gray-50 pt-20 pb-16 overflow-hidden"> 
       
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         
@@ -17,9 +16,6 @@ const Hero=()=> {
             Experience comfort, luxury, and freedom. Choose from the best selection of cars and hit the road with confidence.
           </p>
 
-          {/* <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
-            Explore Cars
-          </button> */}
           <Link to="/cars" className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">Explore Cars</Link>
         </div>
 

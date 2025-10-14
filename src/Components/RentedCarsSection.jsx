@@ -24,7 +24,7 @@ const RentedCarsSection = ({ rentedCars = [] }) => {
       days_rented: 2,
       status: "Active",
       image_url:
-        "https://imgd.aeplcdn.com/1200x900/n/cw/ec/143885/hyundai-creta-right-front-three-quarter0.jpeg",
+        "https://imgd.aeplcdn.com/642x336/n/cw/ec/106815/creta-exterior-right-front-three-quarter-5.jpeg?isig=0&q=80",
     },
   ];
 
