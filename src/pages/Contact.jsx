@@ -5,7 +5,7 @@ const Contact = () => {
   
 
   return (
-    <section className="bg-gray-50 py-22 px-6 sm:px-10">
+    <section className="bg-gray-50 py-5 px-6 sm:px-10">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Heading */}
         <div className="text-center">
@@ -56,16 +56,6 @@ const Contact = () => {
               alt="Showroom 2"
               className="rounded-xl object-cover h-52 w-full shadow-md hover:scale-105 transition"
             />
-            {/* <img
-              src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80"
-              alt="Showroom 3"
-              className="rounded-xl object-cover h-52 w-full shadow-md hover:scale-105 transition"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80"
-              alt="Showroom 4"
-              className="rounded-xl object-cover h-52 w-full shadow-md hover:scale-105 transition"
-            /> */}
           </div>
         </div>
 

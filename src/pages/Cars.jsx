@@ -1,5 +1,4 @@
 import React, { useEffect,useState } from "react";
-// import carsData from "../data/carsData";
 import CarCard from "../Components/CarCard";
 import  {useCars}  from "../hooks/useCars";
 import { Link } from "react-router-dom";
@@ -35,11 +34,7 @@ const Cars = () => {
         </div>
 
         {/* Cars Grid */}
-        {/* <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {carsData.map((car) => (
-            <CarCard key={car.id} car={car} />
-          ))}
-        </div> */}
+        
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {cars.map((car) => (
             <Link key={car.car_id} to={`/car/${car.car_id}`} state={{ car }}>
