@@ -20,7 +20,7 @@ const Login = () => {
     const credentials = { email: formData.email, password: formData.password };
     try {
       const response = await login(credentials);
-      console.log("login api response:",response);
+      // console.log("login api response:",response);
       setLoginMsg(response.message);
       if(response.message === 'Login successful')
       {

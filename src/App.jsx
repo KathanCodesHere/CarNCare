@@ -11,6 +11,7 @@ import AboutSec from "./Components/AboutSec";
 import Layout from "./Components/Layout";
 import Profile from "./pages/Profile";
 import CarDetails from "./pages/CarDetails";
+import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function App() {
             <Route path="about" element={<AboutSec />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/car/:id" element={<CarDetails />} />
+            <Route path="/admin" element={<AdminDashboard />} />
 
           </Route>
         </Routes>

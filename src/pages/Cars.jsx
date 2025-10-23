@@ -19,7 +19,7 @@ const Cars = () => {
   },[]);
 
   useEffect(() => {
-  console.log("Cars updated:", cars); // ✅ Logs after state updates
+  // console.log("Cars updated:", cars); 
 }, [cars]);
 
   return (
