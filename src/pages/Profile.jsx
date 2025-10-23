@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-// eslint-disable-next-line no-unused-vars
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useProfile } from "../hooks/useProfile";
 
 const Profile = () => {
+  const { getProfile, loading, error } = useProfile();
+
+  const [user, setUser] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
@@ -11,6 +14,26 @@ const Profile = () => {
   });
 
   const [preview, setPreview] = useState(null);
+
+  // Fetch profile
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await getProfile();
+        const userData = res.data;
+
+        setUser(userData);
+        setFormData({
+          name: userData.name || "",
+          mobile: userData.phone || "",
+          image: null,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   // Handle input
   const handleChange = (e) => {
@@ -34,6 +57,9 @@ const Profile = () => {
     alert("Profile updated successfully ✅");
   };
 
+  if (loading) return <p className="text-center mt-10">Loading profile...</p>;
+  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
+
   return (
     <motion.div
       key="profile-section"
@@ -52,6 +78,12 @@ const Profile = () => {
               alt="Profile Preview"
               className="w-full h-full object-cover"
             />
+          ) : user.image ? (
+            <img
+              src={user.image}
+              alt="Profile Avatar"
+              className="w-full h-full object-cover"
+            />
           ) : (
             <img
               src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
@@ -61,7 +93,7 @@ const Profile = () => {
           )}
         </div>
         <h2 className="text-xl font-semibold text-blue-600">
-          Care & Drive User
+          {user.name || "Care & Drive User"}
         </h2>
         <p className="text-gray-600 mt-1 text-center text-sm">
           Update your personal details and photo easily.
@@ -75,9 +107,9 @@ const Profile = () => {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Name */}
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Full Name
-            </label>
+            <label className="block text-gray-700 mb-1 font-medium">Email</label>
+            <p>{user.email}</p>
+            <label className="block text-gray-700 mb-1 font-medium">Full Name</label>
             <input
               type="text"
               name="name"
@@ -91,9 +123,7 @@ const Profile = () => {
 
           {/* Mobile */}
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Mobile Number
-            </label>
+            <label className="block text-gray-700 mb-1 font-medium">Mobile Number</label>
             <input
               type="tel"
               name="mobile"
@@ -105,27 +135,9 @@ const Profile = () => {
             />
           </div>
 
-          {/* Password */}
-          <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter new password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
           {/* Image Upload */}
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">
-              Profile Image
-            </label>
+            <label className="block text-gray-700 mb-1 font-medium">Profile Image</label>
             <input
               type="file"
               accept="image/*"
