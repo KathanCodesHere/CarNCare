@@ -12,6 +12,15 @@ const profileService = {
       throw error.response?.data || { message: "Unable to fetch profile" };
     }
   },
+  updateProfile: async (formData) => {
+    try {
+      const response = await apiClient.post("/user/Updateprofile",formData);
+      return response.data;
+    } catch (error) {
+      console.error("Updating profile failed:", error.response?.data || error.message);
+      throw error.response?.data || { message: "Unable to update profile" };
+    }
+  },
 };
 
 export default profileService;

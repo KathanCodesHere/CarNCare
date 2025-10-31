@@ -6,7 +6,6 @@ const carService = {
     const response = await apiClient.get("/cars/getAllCar");
     return response.data;
   },
-
 };
 
 export default carService;
