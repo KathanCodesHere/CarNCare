@@ -21,7 +21,6 @@ const Profile = () => {
       try {
         const res = await getProfile();
         const userData = res.data;
-
         setUser(userData);
         setFormData({
           name: userData.name || "",
