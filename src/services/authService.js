@@ -49,6 +49,15 @@ const authService = {
       throw error.response?.data || { message: "Logout failed" };
     }
   },
+  verifyOtp: async () => {
+    try {
+      const response = await apiClient.post("/mail/verifyOtp");
+      return response;
+    } catch (error) {
+      console.error("verify otp failed:", error.response?.data || error.message);
+      throw error.response?.data || { message: "verify otp failed" };
+    }
+  },
 
 };
 
